@@ -1,0 +1,7 @@
+.public-layout{
+    // background: url('../assets/restaurant.jpg') rgba(255, 255, 255, .5);
+    background:linear-gradient(0deg, rgba(197, 197, 197, 0.3), rgba(255, 255, 255, 0.6)), url('../assets/restaurant.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
