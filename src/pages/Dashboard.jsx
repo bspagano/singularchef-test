@@ -23,6 +23,43 @@ const Dashboard = () => {
   return (
     <>
       <Header/>
+      <h1>Nuestras Recetas</h1>
+      <p>Elige las recetas y recibe sus ingredientes exactos en tu domicilio </p>
+      <Grid>
+        <Grid>
+        <div>
+          <button>Platos Principales(31)</button>
+        </div>
+        </Grid>
+       <Grid>
+          <div>
+            <button>Desayuno(4)</button>
+          </div>
+        </Grid>
+       <Grid>
+          <div>
+            <button>Detox(1)</button>
+          </div>
+       </Grid>
+        <Grid>
+          <div>
+            <button>Postres(4)</button>  
+          </div>
+        </Grid>
+        <Grid>
+          <div>
+            <button>Otros(8)</button>
+          </div>
+        </Grid>
+        <Grid>
+          <div>
+             <button>Kinds Approved(27)</button>
+          </div>
+        </Grid>
+      </Grid>
+      
+     
+
       <Grid container spacing={2}>
         {
           foods.map((element, index) => {

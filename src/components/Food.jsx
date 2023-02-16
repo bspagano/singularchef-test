@@ -38,12 +38,6 @@ export default function RecipeReviewCard({food}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-       
         title= {food.name}
         subheader="September 14, 2016"
       />
@@ -53,13 +47,12 @@ export default function RecipeReviewCard({food}) {
         image={food.image_url}
         alt="Paella dish"
       />
-      <CardContent>
-        <IconButton>
+    
+       
           <AccessTimeIcon/> {food.time}min
-
-          </IconButton >  {food.type}
-          <LocalDiningIcon/>
-      </CardContent>
+      
+          <LocalDiningIcon/> {food.type}
+      
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <RemoveRedEyeIcon/>
