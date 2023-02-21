@@ -1,8 +1,8 @@
-import { collection, doc, getDoc, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
 import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import { db } from '../config/firebase';
-import { Box, Button, Grid, Rating, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import ThemeContext from '../context/ThemeContext';
@@ -10,13 +10,27 @@ import ThemeContext from '../context/ThemeContext';
 function App() {
    const { id } = useParams();
    const [food, setFood] = useState({});
+   const [ingredients, setIngredients] = useState([]);
    const navigate = useNavigate();
    const { addToCart } = useContext(ThemeContext);
 
    const load = async () => {
-      const snap = await getDoc(doc(db, 'foods', id));
+      const foodDoc = doc(db, 'foods', id)
+      const snap = await getDoc(foodDoc);
       if (snap.exists()) {
          setFood(snap.data());
+         const queryRef = query(
+            collection(db, 'ingredients'),
+            where('food_id', '==', foodDoc)
+          );
+          const data = (await getDocs(queryRef)).docs;
+          const items = data.map(doc => {
+            return {
+              ... doc.data(),
+              id: doc.id
+            }
+          });
+         setIngredients(items)
       }else{
          navigate('/');
       }
@@ -28,7 +42,6 @@ function App() {
          load();
       }
    }, [id]);
-   console.log(food)
   return (
    <Box>
       <Grid container spacing={3}>
@@ -72,6 +85,24 @@ function App() {
             <Button variant="contained" onClick={() => addToCart(food) }>Añadir al carrito</Button>
          </Grid>
       </Grid>
+      {
+         ingredients?.map(element => {
+            return(
+               <Card sx={{ maxWidth: 140 }} key={element.image_url}>
+                  <CardMedia
+                     sx={{ height: 140, width: 140 }}
+                     image={element.image_url}
+                     title={element.name}
+                  />
+                  <CardContent>
+                     <Typography gutterBottom variant="h5" component="div">
+                        {element.name}
+                     </Typography>
+                  </CardContent>
+               </Card>
+            )
+         })
+      }
    </Box>
   );
 };
