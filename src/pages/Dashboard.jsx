@@ -14,9 +14,13 @@ const Dashboard = () => {
       collection(db, 'foods')
     );
     const data = (await getDocs(queryRef)).docs;
-    const items = data.map(doc => doc.data());
+    const items = data.map(doc => {
+      return {
+        ... doc.data(),
+        id: doc.id
+      }
+    });
     setFoods(items);
-    console.log(items)
   }
   useEffect(() => {
     load();
