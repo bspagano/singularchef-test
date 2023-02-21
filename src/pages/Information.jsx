@@ -72,7 +72,7 @@ const Information = ({ history }) => {
               <h4>{item.name}</h4>
               <span>
                 $
-                {item.price}
+                {item.price * item.quantity}
               </span>
             </div>
           </div>

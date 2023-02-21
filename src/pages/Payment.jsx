@@ -14,7 +14,7 @@ const Payment = ({ history }) => {
       navigate('/');
     }
   }, [state.cart])
-  const paypalOtions = {
+  const paypalOptions = {
     clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
     intent: 'capture',
     currency: 'USD'
@@ -34,7 +34,7 @@ const Payment = ({ history }) => {
         payment: data
       }
       addNewOrder(newOrder);
-      history.push('/checkout/success')
+      navigate('/checkout/success')
     }
   }
 
@@ -72,13 +72,12 @@ const Payment = ({ history }) => {
           </div>
         <div className="Payment-button">
           <PayPalButton
-            paypalOptions={paypalOtions}
-            buttonStyles={buttonStyles}
+            options={paypalOptions}
+            style={buttonStyles}
             amount={handleSumTotal()}
-            onPaymentStart={() => console.log('Start Payment')}
-            onPaymentSuccess={data => handlePaymentSuccess(data)}
-            onPaymentError={error => console.log(error)}
-            onPaymentCancel={data => console.log(data)}
+            onSuccess={data => handlePaymentSuccess(data)}
+            onError={error => console.log(error)}
+            onCancel={data => console.log(data)}
           />
         </div>
       </div>

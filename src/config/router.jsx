@@ -9,6 +9,7 @@ import PublicLayout from "../layout/PublicLayout";
 import Cart from "../pages/Cart";
 import Information from "../pages/Information";
 import Payment from "../pages/Payment";
+import Success from "../pages/Success";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
                     {
                         path: '/checkout/payment',
                         element: <Payment />,
+                    },
+                    {
+                        path: '/checkout/success',
+                        element: <Success />,
                     },
                 ],
             },
