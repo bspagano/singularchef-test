@@ -11,6 +11,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import { Box, Grid } from '@mui/material';
 import ThemeContext from '../context/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const ExpandMore = styled((props) => {
@@ -25,7 +26,8 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeReviewCard({food}) {
-  const { state, addToCart } = React.useContext(ThemeContext);
+  const { addToCart } = React.useContext(ThemeContext);
+  const navigate = useNavigate();
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -48,7 +50,7 @@ export default function RecipeReviewCard({food}) {
         </Grid>
       </Box>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={() => navigate('/ViewFood/'+food.id)}>
           <RemoveRedEyeIcon/>
         </IconButton> 
         <IconButton aria-label="share" onClick={() => addToCart(food)}>

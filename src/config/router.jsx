@@ -70,7 +70,7 @@ export const router = createBrowserRouter([
                 element: <PrivateLayout/>,
                 children: [
                     {
-                        index: true,
+                        path: '/ViewFood/:id',
                         element: <ViewFood/>,
                     },
                 ],
