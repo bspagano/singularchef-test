@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import PublicLayout from "../layout/PublicLayout";
 import Cart from "../pages/Cart";
+import Information from "../pages/Information";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,16 @@ export const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Cart />,
+                    },
+                ],
+            },
+            {
+                path: "checkout",
+                element: <PrivateLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: <Information />,
                     },
                 ],
             },
