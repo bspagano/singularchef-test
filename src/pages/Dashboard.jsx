@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
-import  Header from "../components/Header";
+import { collection, getDocs, query } from "firebase/firestore";
 import Food from "../components/Food";
 import { db } from "../config/firebase";
 import { Grid, Typography, Box  } from "@mui/material";
@@ -27,7 +26,6 @@ const Dashboard = () => {
   }, []);
   return (
     <>
-      <Header/>
       <Box sx={{ m: 2 }}>
         <Typography align="center" variant="h2"> Nuestras Recetas </Typography>
         <Typography align="center"> Elige las recetas y recibe sus ingredientes exactos en tu domicilio </Typography>

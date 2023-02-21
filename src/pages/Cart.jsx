@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ThemeContext from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
-
+import Checkout from '../components/Checkout';
 export default function Cart() {
   const { state } = React.useContext(ThemeContext);
   const navigate = useNavigate();
@@ -11,8 +11,8 @@ export default function Cart() {
     }
   }, [state.cart])
   return (
-    <div>
-      hola
-    </div>
+    <>
+      <Checkout />
+    </>
   )
 }
