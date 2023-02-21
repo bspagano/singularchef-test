@@ -13,6 +13,8 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { logout } from '../config/firebase';
 import { Badge } from '@mui/material';
 import ThemeContext from '../context/ThemeContext';
+import { Link } from "react-router-dom";
+
 export default function PrimarySearchAppBar() {
   const { state } = React.useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -117,8 +119,10 @@ export default function PrimarySearchAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            style={{textDecoration: 'none', color: 'white'}}
             sx={{ display: { xs: 'none', sm: 'block' } }}
+            component={Link}
+            to='/'
           >
             Singularchef
           </Typography>
@@ -130,7 +134,8 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              component={Link}
+              to="/cart"
               color="inherit"
             >
               <Badge badgeContent={cartQuantity} color="error">
