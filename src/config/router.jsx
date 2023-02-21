@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import RootLayout from "../layout/RootLayout";
 import PrivateLayout from "../layout/PrivateLayout";
 import Login from "../pages/Login";
@@ -10,6 +9,7 @@ import Cart from "../pages/Cart";
 import Information from "../pages/Information";
 import Payment from "../pages/Payment";
 import Success from "../pages/Success";
+import ViewFood from "../pages/ViewFood";
 
 export const router = createBrowserRouter([
     {
@@ -65,7 +65,17 @@ export const router = createBrowserRouter([
                         element: <Success />,
                     },
                 ],
+            }, {
+                path: "ViewFood",
+                element: <PrivateLayout/>,
+                children: [
+                    {
+                        index: true,
+                        element: <ViewFood/>,
+                    },
+                ],
             },
         ],
+        
     },
 ]);
