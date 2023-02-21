@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard";
 import PublicLayout from "../layout/PublicLayout";
 import Cart from "../pages/Cart";
 import Information from "../pages/Information";
+import Payment from "../pages/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Information />,
+                    },
+                    {
+                        path: '/checkout/payment',
+                        element: <Payment />,
                     },
                 ],
             },
