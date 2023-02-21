@@ -15,6 +15,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import { Box, Grid } from '@mui/material';
 
 
 const ExpandMore = styled((props) => {
@@ -47,12 +48,16 @@ export default function RecipeReviewCard({food}) {
         image={food.image_url}
         alt="Paella dish"
       />
-    
-       
-          <AccessTimeIcon/> {food.time}min
-      
-          <LocalDiningIcon/> {food.type}
-      
+      <Box sx={{ m: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <AccessTimeIcon/> {food.time}min
+          </Grid>
+          <Grid item xs={6}>
+            <LocalDiningIcon/> {food.type}
+          </Grid>
+        </Grid>
+      </Box>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <RemoveRedEyeIcon/>
@@ -77,6 +82,7 @@ export default function RecipeReviewCard({food}) {
           </Typography>
           <Typography paragraph>
           {food.description}
+                
           </Typography>
           <Typography >
          
