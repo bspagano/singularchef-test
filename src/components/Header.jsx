@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -14,13 +12,21 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { logout } from '../config/firebase';
 import { Badge } from '@mui/material';
+import ThemeContext from '../context/ThemeContext';
 export default function PrimarySearchAppBar() {
+  const { state } = React.useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [cartQuantity, setCartQuantity] = React.useState(0);
 
+  React.useEffect(() => {
+    const reducer = (accumulator, currentValue) => accumulator + currentValue.quantity;
+    const quantity = state.cart.reduce(reducer, 0);
+    setCartQuantity(quantity);
+  }, [state.cart])
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -127,7 +133,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <Badge badgeContent={4} color="error">
+              <Badge badgeContent={cartQuantity} color="error">
                 <AddShoppingCartIcon />
               </Badge>
             </IconButton>

@@ -6,16 +6,15 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import { Box, Grid } from '@mui/material';
+import ThemeContext from '../context/ThemeContext';
 
 
 const ExpandMore = styled((props) => {
@@ -30,12 +29,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeReviewCard({food}) {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  const { state, addToCart } = React.useContext(ThemeContext);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -62,33 +56,10 @@ export default function RecipeReviewCard({food}) {
         <IconButton aria-label="add to favorites">
           <RemoveRedEyeIcon/>
         </IconButton> 
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" onClick={() => addToCart(food)}>
           <AddShoppingCartIcon/>
         </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>:</Typography>
-          <Typography paragraph>
-            
-          </Typography>
-          <Typography paragraph>
-          {food.description}
-                
-          </Typography>
-          <Typography >
-         
-          </Typography>
-        </CardContent>
-      </Collapse>
     </Card>
   );
 }
