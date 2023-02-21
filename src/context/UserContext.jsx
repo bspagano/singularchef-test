@@ -12,9 +12,7 @@ export default function UserContextProvider({ children }) {
     const [user, setUser] = useState(false);
 
     useEffect(() => {
-        console.log("useEffect en acción");
         const unsuscribe = onAuthStateChanged(auth, (user) => {
-            console.log(user);
             setUser(user);
         });
         return unsuscribe;
