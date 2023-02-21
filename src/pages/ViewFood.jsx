@@ -85,24 +85,30 @@ function App() {
             <Button variant="contained" onClick={() => addToCart(food) }>Añadir al carrito</Button>
          </Grid>
       </Grid>
-      {
-         ingredients?.map(element => {
-            return(
-               <Card sx={{ maxWidth: 140 }} key={element.image_url}>
-                  <CardMedia
-                     sx={{ height: 140, width: 140 }}
-                     image={element.image_url}
-                     title={element.name}
-                  />
-                  <CardContent>
-                     <Typography gutterBottom variant="h5" component="div">
-                        {element.name}
-                     </Typography>
-                  </CardContent>
-               </Card>
-            )
-         })
-      }
+      <Box sx={{ m: 1 }}>
+
+         <Typography gutterBottom variant="h5" component="div">
+            Ingredientes
+         </Typography>
+         {
+            ingredients?.map(element => {
+               return(
+                  <Card sx={{ maxWidth: 140 }} key={element.image_url}>
+                     <CardMedia
+                        sx={{ height: 140, width: 140 }}
+                        image={element.image_url}
+                        title={element.name}
+                     />
+                     <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                           {element.name}
+                        </Typography>
+                     </CardContent>
+                  </Card>
+               )
+            })
+         }
+      </Box>
    </Box>
   );
 };
