@@ -35,20 +35,27 @@ function App() {
          <Grid item xs={6} >
             <img
                src={food.image_url}
+               style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+               }}
+               alt={food.name}
             />
          </Grid>
-         <Grid item xs={6} >
-            <Typography variant="h1" component="h2">
+         <Grid item xs={6} padding='4%'>
+            <Typography variant="h3" component="h3">
                {food.name}
             </Typography>
-            <Typography variant="h1" component="h2">
-               {food.description}
-            </Typography>
+            
             {
                food.rating && (
                   <Rating name="half-rating" defaultValue={5} value={food.rating} precision={0.5} readOnly />
                )
             }
+            <Typography variant="p" component="p" textAlign="justify" >
+               {food.description}
+            </Typography>
             <Box sx={{ m: 1 }}>
                <Grid container spacing={2}>
                   <Grid item xs={6}>
@@ -59,7 +66,7 @@ function App() {
                   </Grid>
                </Grid>
             </Box>
-            <Typography variant="h1" component="h2">
+            <Typography variant="p" component="h1">
                ${food.price}
             </Typography>
             <Button variant="contained" onClick={() => addToCart(food) }>Añadir al carrito</Button>
