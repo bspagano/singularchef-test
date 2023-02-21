@@ -8,16 +8,11 @@ import "@fontsource/roboto/700.css";
 import "./index.css";
 // import './sass/index.scss';
 
-import { RouterProvider } from "react-router-dom";
-import { router } from "./config/router";
 
-import { CssBaseline } from "@mui/material";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <>
-    {/* <React.StrictMode> */}
-    <CssBaseline />
-    <RouterProvider router={router} />
-    {/* </React.StrictMode> */}
-  </>
-);
+import ThemeContext from "./context/ThemeContext";
+import useInitialState from "./hooks/useInitialState";
+import App from "./App";
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
